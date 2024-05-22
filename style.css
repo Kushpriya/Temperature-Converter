@@ -1,104 +1,108 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
+body {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
 }
 
-.container{
+.container {
     max-width: 600px;
     background: #d98cb6;
-    border-radius: 60px;
+    border-radius: 90px;
     box-shadow: 0px 0px 15px 3px rgba(15, 12, 12, 0.4);
     font-family: sans-serif;
     padding: 50px;
+    text-align: center;
 }
 
-.title{
+.title {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap-reverse;
-    gap: 10px;
+    /* flex-wrap: wrap-reverse; */
+    gap: 30px;
 }
 
-.Temperature-icon{
-    font-size: 60px;
+.Temperature-icon {
+    font-size: 50px;
     color: #f0ecec;
 }
 
-h1{
+h1 {
     color: #181717;
     letter-spacing: 1.2px;
     font-size: 30px;
 }
 
-#celsius, #fahrenheit, #kelvin{
+#input-section {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 20px;
 }
 
-input{
-    flex: 5;
+#temperature, #unit {
     height: 60px;
     font-size: 20px;
     font-weight: 600;
     text-align: center;
     border: none;
     outline: none;
-    border-radius: 30px 0 0 30px;
+    border-radius: 20px;
     padding: 10px;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button{
-    -webkit-appearance: none;
-}
-
-input{
-    -moz-appearance: textfield;
+    margin: 5px;
 }
 
 
-.icon{
-    flex: 1;
-    height: 60px;
-    line-height: 60px;
-    padding: 0 10px;
-    text-align: center;
-    font-size: 30px;
-    background: #4d5964;
-    color: #fff;
-    border-radius: 0 30px 30px 0;
-}
-
-
-.button{
+.button {
     margin-top: 25px;
-    text-align: center;
 }
 
-
-.button button{
+.button button {
     border: none;
     outline: none;
     padding: 20px 40px;
-    font-size: 30px;
+    font-size: 20px;
     font-weight: 600;
-    border-radius: 30px;
+    border-radius: 50px;
     cursor: pointer;
     transition: 0.3s;
+
 }
 
-.button button:hover{
+
+.convert:hover {
+    background: #218838;
+    color: #fff;
+}
+
+.clr:hover {
     background: #b11313;
     color: #fff;
+}
+
+#output-section {
+    margin-top: 25px;
+}
+
+#result{
+    font-size: 20px;
+}
+#output1, #output2 {
+    width: 40%;
+    text-align: center;
+    border: none;
+    outline: none;
+    padding: 20px 40px;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 20px;
+    margin: 5px;
+
 }

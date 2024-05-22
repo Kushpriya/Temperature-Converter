@@ -1,42 +1,55 @@
-let celsiusInput = document.querySelector('#celsius > input')
-let fahrenheitInput = document.querySelector('#fahrenheit > input')
-let kelvinInput = document.querySelector('#kelvin > input')
+document.addEventListener('DOMContentLoaded', () => {
+    const temperatureInput = document.getElementById('temperature');
+    const unitInput = document.getElementById('unit');
+    const convertButton = document.getElementById('convert-button');
+    const clearButton = document.getElementById('clr-button');
+    const outputField1 = document.getElementById('output1');
+    const outputField2 = document.getElementById('output2');
 
-let btn = document.querySelector('.button button')
-function roundNumber(number){
-    return Math.round(number*100)/100
-}
+    function roundNumber(number) {
+        return Math.round(number * 100) / 100;
+    }
 
-celsiusInput.addEventListener('input', function(){
-    let cTemp = parseFloat(celsiusInput.value)
-    let fTemp = (cTemp*(9/5)) + 32
-    let kTemp = cTemp + 273.15
+    function validateInput(input) {
+        return !isNaN(input) && input.trim() !== '';
+    }
 
-    fahrenheitInput.value = roundNumber(fTemp)
-    kelvinInput.value = roundNumber(kTemp)
-})
+    function convertTemperature() {
+        const tempValue = temperatureInput.value;
+        const unit = unitInput.value;
 
-fahrenheitInput.addEventListener('input', function(){
-    let fTemp = parseFloat(fahrenheitInput.value)
-    let cTemp = (fTemp - 32) * (5/9)
-    let kTemp = (fTemp -32) * (5/9) + 273.15
+        if (!validateInput(tempValue)) {
+            outputField1.value = 'Please enter a valid number';
+            outputField2.value = '';
+            return;
+        }
 
-    celsiusInput.value = roundNumber(cTemp)
-    kelvinInput.value = roundNumber(kTemp)
-})
+        const temperature = parseFloat(tempValue);
 
-kelvinInput.addEventListener('input', function(){
-    let kTemp = parseFloat(kelvinInput.value)
-    let cTemp = kTemp - 273.15
-    let fTemp = (kTemp - 273.15) * (9/5) + 32
+        if (unit === 'celsius') {
+            const fahrenheit = (temperature * 9/5) + 32;
+            const kelvin = temperature + 273.15;
+            outputField1.value = `${roundNumber(fahrenheit)} °F`;
+            outputField2.value = `${roundNumber(kelvin)} K`;
+        } else if (unit === 'fahrenheit') {
+            const celsius = (temperature - 32) * 5/9;
+            const kelvin = (temperature - 32) * 5/9 + 273.15;
+            outputField1.value = `${roundNumber(celsius)} °C`;
+            outputField2.value = `${roundNumber(kelvin)} K`;
+        } else if (unit === 'kelvin') {
+            const celsius = temperature - 273.15;
+            const fahrenheit = (celsius * 9/5) + 32;
+            outputField1.value = `${roundNumber(celsius)} °C`;
+            outputField2.value = `${roundNumber(fahrenheit)} °F`;
+        }
+    }
 
-    celsiusInput.value = roundNumber(cTemp)
-    fahrenheitInput.value = roundNumber(fTemp)
-})
+    function clearFields() {
+        temperatureInput.value = '';
+        outputField1.value = '';
+        outputField2.value = '';
+    }
 
-
-btn.addEventListener('click', ()=>{
-    celsiusInput.value = ""
-    fahrenheitInput.value = ""
-    kelvinInput.value = ""
-})
+    convertButton.addEventListener('click', convertTemperature);
+    clearButton.addEventListener('click', clearFields);
+});
